@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.luxw.springboost.mapper.OrgMapper">
+  <select id="getOrgns" resultType="com.luxw.springboost.model.Orgn">
+    select id,orgId,orgName,parentOrgId,company,department,orgType from t_org
+  </select>
+  <select id="getOrgn" parameterType="long" resultType="com.luxw.springboost.model.Orgn">
+    select id,orgId,orgName,parentOrgId,company,department,orgType 
+    from t_org where id = #{id}
+  </select>
+  <select id="getOrgnCount" resultType="java.lang.Integer">
+    select count(*) as count from t_org
+  </select>
+  <insert id="insertOrgn" parameterType="com.luxw.springboost.model.Orgn">
+    insert into t_org(orgId,orgName,parentOrgId,company,department,orgType) 
+    values (#{orgId},#{orgName},#{parentOrgId},#{company},#{department},#{orgType})
+  </insert>
+  <delete id="deleteOrgn" parameterType="long">
+    delete from t_org where id = #{id}
+  </delete>
+  <update id="updateOrgn" parameterType="com.luxw.springboost.model.Orgn">
+    update t_org set
+	orgId=#{orgId},
+	orgName=#{orgName},
+	parentOrgId=#{parentOrgId},
+	company=#{company},
+	department=#{department},
+	orgType=#{orgType}
+	where id = #{id}
+  </update>
+</mapper>
